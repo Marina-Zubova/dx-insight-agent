@@ -159,6 +159,34 @@ These may emerge as the sample grows.
 
 ---
 
+---
+
+## Agent Configuration
+
+| Component | Detail |
+|---|---|
+| **Runtime** | OpenClaw 2026.6.10 |
+| **Model** | custom-api-tensorx-ai/z-ai/glm-5.1 |
+| **Target Repository** | huggingface/transformers |
+| **MCP Integration** | Composio (7 tools: search, execute, connections, schemas, remote bash, workbench) |
+| **Observability** | Bronto (OTel) — traces, metrics, and logs exported to `ingestion.eu.bronto.io` |
+| **Scheduler** | OpenClaw cron — Job A every 6h, Job B every 24h |
+| **Plugins** | Telegram, DuckDuckGo, diagnostics-otel |
+| **Source Code** | github.com/Marina-Zubova/dx-insight-agent |
+
+### Bronto Integration
+
+All agent activity — PR analysis runs, API calls, tool invocations, and errors — is instrumented via OpenTelemetry and exported to [Bronto](https://bronto.io). The OTel collector pipeline:
+
+- **Receivers:** OTLP (HTTP on port 4318)
+- **Processors:** Batch
+- **Exporters:** Debug + Bronto (`ingestion.eu.bronto.io/v1/{traces,metrics,logs}`)
+- **Dataset:** `openclaw` / **Collection:** `openclaw-demo`
+
+This enables real-time monitoring of agent health, performance, and cost — critical for a continuously running research agent.
+
+---
+
 ## Gaps
 
 1. I don't know how long PR #43838 spent in draft — the 137-day duration may overstate active friction.
