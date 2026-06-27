@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DX Insight Agent — OpenClaw Use Cases</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/black.css">
+<style>
+:root {
+  --accent: #4ecdc4;
+  --warn: #ff6b6b;
+  --muted: #a0a0b0;
+  --bg-dark: #1a1a2e;
+}
+.reveal-viewport { background: var(--bg-dark); }
+.reveal h1, .reveal h2, .reveal h3 { color: #fff; text-transform: none; letter-spacing: 0; }
+.reveal h1 { font-size: 2.4em; }
+.reveal h2 { font-size: 1.8em; color: var(--accent); }
+.reveal h3 { font-size: 1.3em; }
+.reveal p, .reveal li { color: #d0d0e0; font-size: 0.85em; line-height: 1.6; }
+.reveal .highlight { color: var(--accent); font-weight: 700; }
+.reveal .warn { color: var(--warn); font-weight: 700; }
+.reveal .muted { color: var(--muted); font-size: 0.7em; }
+.reveal .big-number { font-size: 3em; color: var(--accent); font-weight: 800; line-height: 1; }
+.reveal .big-number.warn { color: var(--warn); }
+.reveal .card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 8px 0;
+  text-align: left;
+}
+.reveal .card h4 { color: var(--accent); margin: 0 0 8px 0; font-size: 1em; }
+.reveal .card p { margin: 0; font-size: 0.75em; }
+.reveal .grid { display: grid; gap: 16px; }
+.reveal .grid-2 { grid-template-columns: 1fr 1fr; }
+.reveal .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.reveal .evidence {
+  background: rgba(78,205,196,0.08);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-style: italic;
+  font-size: 0.7em;
+  text-align: left;
+  color: #b0d0d0;
+}
+.reveal .tag {
+  display: inline-block;
+  background: rgba(78,205,196,0.2);
+  color: var(--accent);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.6em;
+  margin: 2px;
+}
+.reveal .tag.red {
+  background: rgba(255,107,107,0.2);
+  color: var(--warn);
+}
+.reveal code { color: var(--accent); font-size: 0.85em; }
+.reveal pre code { font-size: 0.65em; }
+.reveal .demo-box {
+  border: 2px dashed var(--accent);
+  border-radius: 16px;
+  padding: 30px;
+  margin: 20px 0;
+  text-align: center;
+}
+.reveal .demo-box p { font-size: 1.1em; }
+.reveal .avatar { font-size: 1.6em; }
+.reveal .source { color: var(--muted); font-size: 0.55em; text-align: right; margin-top: 8px; }
+.reveal section:last-child h2 { margin-bottom: 0.3em; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- SLIDE 1: Title -->
+<section>
+  <p class="muted" style="margin-bottom:0">OpenClaw Use Cases</p>
+  <h1>DX Insight Agent</h1>
+  <p style="font-size:1.1em; margin-top:0.5em">An AI agent that reads pull requests<br>so you don't have to</p>
+  <p class="muted" style="margin-top:2em">Marina Zubova · June 2026</p>
+</section>
+
+<!-- SLIDE 2: The Problem -->
+<section>
+  <h2>The Problem</h2>
+  <p>Developer experience research is <span class="warn">manual, slow, and anecdotal</span></p>
+  <div class="grid grid-2" style="margin-top:1.5em">
+    <div class="card">
+      <h4>📊 How it works today</h4>
+      <p>Read PRs manually<br>Run surveys (low response)<br>Guess at friction points<br>Report once, forget</p>
+    </div>
+    <div class="card">
+      <h4>⚠️ What we miss</h4>
+      <p>Patterns across hundreds of PRs<br>Real-time friction signals<br>Evidence-backed recommendations<br>Continuous monitoring</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: The Idea -->
+<section>
+  <h2>The Idea</h2>
+  <p style="font-size:1.1em">What if an AI agent <span class="highlight">continuously observes</span> pull requests<br>and surfaces friction patterns?</p>
+  <div class="grid grid-3" style="margin-top:1.5em">
+    <div class="card" style="text-align:center">
+      <p style="font-size:1.8em">🔍</p>
+      <h4>Observe</h4>
+      <p>Read PRs, reviews,<br>timelines, CI status</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <p style="font-size:1.8em">🧠</p>
+      <h4>Analyze</h4>
+      <p>Identify friction,<n> categorize themes</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <p style="font-size:1.8em">📋</p>
+      <h4>Report</h4>
+      <p>Evidence-backed findings,<br>confidence scores</p>
+    </div>
+  </div>
+  <p class="muted" style="margin-top:1.5em">Not a code reviewer. A UX researcher.</p>
+</section>
+
+<!-- SLIDE 4: How It Works -->
+<section>
+  <h2>How It Works</h2>
+  <div class="card" style="font-size:0.9em">
+    <p><span class="highlight">OpenClaw Agent</span> + GitHub API + Heartbeat Scheduler</p>
+  </div>
+  <pre style="margin-top:1em"><code class="language-yaml">
+# HEARTBEAT.md — the agent's schedule
+tasks:
+  - name: dx-analyze-prs
+    interval: 6h
+    prompt: "Find newly merged PRs, produce friction reports"
+
+  - name: dx-weekly-summary
+    interval: 24h
+    prompt: "Aggregate patterns, generate repo DX summary"
+  </code></pre>
+  <p style="margin-top:0.8em; font-size:0.8em">Every 6 hours: scan → collect evidence → analyze → report<br>Every 24 hours: aggregate → identify recurring patterns</p>
+</section>
+
+<!-- SLIDE 5: LIVE DEMO -->
+<section>
+  <h2>Live Demo</h2>
+  <div class="demo-box">
+    <p class="avatar">🔍</p>
+    <p>Watching the agent analyze a <span class="highlight">real pull request</span><br>from <code>huggingface/transformers</code></p>
+    <p class="muted" style="margin-top:1em">PR #46473 — CLI serve import fix</p>
+  </div>
+  <p class="muted">→ Switch to OpenClaw session for live demo</p>
+</section>
+
+<!-- SLIDE 6: Finding 1 -->
+<section>
+  <h2>Finding #1: Modular System</h2>
+  <p>A <span class="highlight">recurring onboarding barrier</span> — the correct way to add models<br>is undiscoverable for new contributors</p>
+  <div class="evidence">
+    "I noticed you started a modular file, but aren't making full use of its functionality to generate the configuration, processing, and modeling from existing components in Transformers."<br>
+    <span class="muted">— ebezzam, PR #43838 review (Feb 19)</span>
+  </div>
+  <div class="grid grid-3" style="margin-top:1em">
+    <div style="text-align:center">
+      <p class="big-number">3</p>
+      <p>PRs affected</p>
+    </div>
+    <div style="text-align:center">
+      <p class="big-number warn">286</p>
+      <p>Lines of code removed<br>due to modular gap</p>
+    </div>
+    <div style="text-align:center">
+      <p class="big-number warn">100+</p>
+      <p>Lines rewritten after<br>wrong approach</p>
+    </div>
+  </div>
+  <p class="source">PRs: #43838, #46565, #46865</p>
+</section>
+
+<!-- SLIDE 7: Finding 2 -->
+<section>
+  <h2>Finding #2: CI Security Gate</h2>
+  <p>Blocks PRs with <span class="warn">"possible reasons"</span> — no specific diagnosis,<br>no self-service resolution</p>
+  <div class="evidence">
+    "This PR was <b>not</b> automatically approved for CI because the security gate failed. <b>Possible reasons:</b> A changed file is outside the allowed directories... or has a disallowed extension... or A new high-severity security issue was detected (Bandit check)."<br>
+    <span class="muted">— CI Bot, PR #43838 (posted 5 times in one day)</span>
+  </div>
+  <div class="grid grid-2" style="margin-top:1em">
+    <div style="text-align:center">
+      <p class="big-number warn">9</p>
+      <p>Days of CI limbo<br>(PR #46565)</p>
+    </div>
+    <div style="text-align:center">
+      <p class="big-number warn">5×</p>
+      <p>Gate blocked same PR<br>in a single day</p>
+    </div>
+  </div>
+  <p class="source">PRs: #43838, #46565</p>
+</section>
+
+<!-- SLIDE 8: Finding 3 -->
+<section>
+  <h2>Finding #3: Undocumented Pitfalls</h2>
+  <p>Known anti-patterns that <span class="warn">3 PRs hit independently</span><br>because the pitfall isn't documented for contributors</p>
+  <div class="evidence">
+    "this would introduce the same error as this PR: #44256 — Namely, annotations imported from future do not play well with fastapi and result in everything being 422 unprocessable entity."<br>
+    <span class="muted">— LysandreJik, PR #46473 review (Jun 16)</span>
+  </div>
+  <p style="margin-top:1em; font-size:0.8em"><code>from __future__ import annotations</code> — a standard Python feature — silently breaks FastAPI</p>
+  <div style="margin-top:0.8em">
+    <span class="tag red">PR #44256</span>
+    <span class="tag red">PR #44620</span>
+    <span class="tag red">PR #46473</span>
+  </div>
+  <p style="margin-top:0.8em; font-size:0.75em">Same pitfall. Three times. Zero documentation.</p>
+</section>
+
+<!-- SLIDE 9: Research Rigor -->
+<section>
+  <h2>Research Rigor</h2>
+  <p>Not just pattern-matching — <span class="highlight">self-correcting analysis</span></p>
+  <div class="grid grid-2" style="margin-top:1em">
+    <div class="card">
+      <h4>❌ Removed (false positives)</h4>
+      <p>"Pipeline broken at launch" — the fix was proactive, not reactive<br>
+      "Community users asking for ETAs" — demand, not friction<br>
+      "Merge delay after approval" — 3.5 hours is trivial</p>
+    </div>
+    <div class="card">
+      <h4>✅ Added (missed friction)</h4>
+      <p>Test infrastructure as onboarding barrier<br>
+      Silent breaking change in library internals<br>
+      Contributor consulting ChatGPT to debug framework tests</p>
+    </div>
+  </div>
+  <div style="margin-top:1em">
+    <span class="tag">Confidence scores</span>
+    <span class="tag">Evidence quotes</span>
+    <span class="tag">Gaps acknowledged</span>
+    <span class="tag">Self-critique</span>
+  </div>
+</section>
+
+<!-- SLIDE 10: The Bigger Picture -->
+<section>
+  <h2>This Isn't Just About Transformers</h2>
+  <p>The same agent, pointed at <span class="highlight">any repository</span>:</p>
+  <div class="grid grid-2" style="margin-top:1em">
+    <div class="card">
+      <h4>🎯 What it finds</h4>
+      <p>Onboarding barriers<br>CI/CD friction<br>Documentation gaps<br>Review process bottlenecks<br>Communication patterns</p>
+    </div>
+    <div class="card">
+      <h4>⚙️ What it needs</h4>
+      <p>Public GitHub repo<br>OpenClaw agent runtime<br>AGENTS.md (guardrails)<br>HEARTBEAT.md (schedule)</p>
+    </div>
+  </div>
+  <p style="margin-top:1.2em; font-size:0.85em">Point it at your repo. Let it run. Read the reports.</p>
+</section>
+
+<!-- SLIDE 11: What's Next -->
+<section>
+  <h2>What's Next</h2>
+  <div class="grid grid-2" style="margin-top:1em">
+    <div class="card">
+      <h4>📈 Scale</h4>
+      <p>Larger PR samples (50+) across multiple repositories<br>Cross-repo pattern comparison</p>
+    </div>
+    <div class="card">
+      <h4>🧪 Validate</h4>
+      <p>Survey contributors to confirm/ refute findings<br>Test hypotheses with larger dataset</p>
+    </div>
+    <div class="card">
+      <h4>🔧 Improve</h4>
+      <p>Earlier architectural review detection<br>CI gate UX recommendations<br>Automated contributing guide suggestions</p>
+    </div>
+    <div class="card">
+      <h4>🌐 Generalize</h4>
+      <p>Template for any repo<br>Multi-repo dashboards<br>Integration with project management</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 12: Thank You -->
+<section>
+  <h2>Thank You</h2>
+  <p style="font-size:1.1em; margin-top:0.5em">🔍 <span class="highlight">DX Insight Agent</span></p>
+  <p style="margin-top:1.5em; font-size:0.9em">
+    <code>github.com/Marina-Zubova/dx-insight-agent</code>
+  </p>
+  <p style="margin-top:1em; font-size:0.9em">
+    <code>github.com/huggingface/transformers</code>
+  </p>
+  <p class="muted" style="margin-top:2em">Built with OpenClaw · Powered by evidence 🔍</p>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  transition: 'slide',
+  transitionSpeed: 'default',
+  width: 1100,
+  height: 700,
+  margin: 0.06,
+});
+</script>
+</body>
+</html>
