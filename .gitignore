@@ -1,0 +1,10 @@
+# OpenClaw internal
+.openclaw/
+devices/
+identity/
+*.token
+*.key
+
+# OS
+.DS_Store
+Thumbs.db
