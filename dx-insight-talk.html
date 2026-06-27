@@ -247,7 +247,30 @@ tasks:
   </div>
 </section>
 
-<!-- SLIDE 10: The Bigger Picture -->
+<!-- SLIDE 10: Agent Stack -->
+<section>
+  <h2>Agent Stack</h2>
+  <div class="grid grid-2" style="margin-top:0.5em">
+    <div class="card">
+      <h4>🧠 Runtime</h4>
+      <p><b>OpenClaw</b> 2026.6.10<br>Model: GLM-5.1 (via TensorX)<br>Scheduler: cron (6h / 24h)</p>
+    </div>
+    <div class="card">
+      <h4>🔌 Integrations</h4>
+      <p><b>GitHub API</b> — PRs, reviews, comments<br><b>Composio MCP</b> — 7 tools (search, execute, bash)<br><b>Bronto</b> — observability (OTel)</p>
+    </div>
+    <div class="card">
+      <h4>📊 Bronto (OTel)</h4>
+      <p>Traces, metrics, logs → ingestion.eu.bronto.io<br>Dataset: <code>openclaw</code><br>Collection: <code>openclaw-demo</code><br>Real-time agent health monitoring</p>
+    </div>
+    <div class="card">
+      <h4>📂 Target</h4>
+      <p><b>huggingface/transformers</b><br>~140k stars, ~3.5k contributors<br>High volume of external PRs</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 10.5: The Bigger Picture -->
 <section>
   <h2>This Isn't Just About Transformers</h2>
   <p>The same agent, pointed at <span class="highlight">any repository</span>:</p>
